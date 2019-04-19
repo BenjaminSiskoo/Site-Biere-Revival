@@ -1,12 +1,10 @@
 <?php 
 
 require 'db.php';
-		//recuperation users
-		require_once 'db.php';
-		$sql = "SELECT * FROM bières";
-		$statement = $pdo->prepare($sql);
-		$statement->execute([$username]);
-		$user = $statement->fetch();
+		//récupération bières
+		$sql = "SELECT * FROM bieres";
+		$statement = $pdo->query($sql);
+		$biere = $statement->fetchAll();
 
 ?>
 
@@ -75,14 +73,15 @@ require 'db.php';
 								</tr>
 							</thead>
 							<tbody>
-								<?php for ($i=0; $i < count($beerArray); $i++) { ?>
+								<?php for ($i=0; $i < count($biere); $i++) { ?>
+									
 								<tr id="<?= ($i+1) ?>">
-									<th scope="row"><?= $beerArray[$i][0] ?></th>
-									<td>€ <?= number_format($beerArray[$i][3], 2, ',', '.'); ?></td>
-									<td>€ <?= number_format($beerArray[$i][3]*1.2, 2, ',', '.'); ?></td>
+									<th scope="row"><?= $biere[$i]['nom'] ?></th>
+									<td>€ <?= number_format($biere[$i]['prix_ht'], 2, ',', '.'); ?></td>
+									<td>€ <?= number_format($biere[$i]['prix_ttc']*1.2, 2, ',', '.'); ?></td>
 									<td>
 										<input class="form-control" onclick="pomme(<?= ($i+1) ?>)" type="number" value="0" min="0" name="<?= 'beerName'.$i ?>">
-										<input id="prixInitial<?= ($i+1) ?>" type="hidden" value="<?= $beerArray[$i][3] ?>">
+										<input id="prixInitial<?= ($i+1) ?>" type="hidden" value="<?= $biere[$i]['prix_ht'] ?>">
 									</td>
 								</tr>
 								<?php } ?>

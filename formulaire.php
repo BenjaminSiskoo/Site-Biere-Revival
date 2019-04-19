@@ -38,7 +38,6 @@ if(!empty($_POST)){
                         ":phone" => $phone,
                         ":email" => $email,
                         ":password" => $password]);
-                    var_dump($result);die();
                     if($result){
                         $_SESSION["connect"] = true;
                         $_SESSION["username"] = $username;

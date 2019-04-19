@@ -21,7 +21,6 @@ function pomme(id)
 	{
 
 		resultatTtc = prixInitial * 1.2;
-		console.log(resultatTtc);
 		resultatTtc = resultatTtc.toFixed(2).replace('.', ',');
 		resultatTtc = "€ " + resultatTtc;
 		document.getElementById(id).childNodes[5].innerHTML = resultatTtc;
